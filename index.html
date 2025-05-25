@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>موقع كلمة سر برو بوت</title>
+<style>
+  body {
+    background: #121212;
+    color: #00aaff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+  }
+  input {
+    font-size: 1.2rem;
+    padding: 10px;
+    width: 300px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    margin-bottom: 20px;
+  }
+  button {
+    background-color: #00aaff;
+    border: none;
+    padding: 10px 25px;
+    font-size: 1.2rem;
+    border-radius: 8px;
+    color: #fff;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #008ecc;
+  }
+  #message {
+    margin-top: 30px;
+    font-size: 1.3rem;
+    white-space: pre-line;
+    max-width: 500px;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<input id="inputText" type="text" placeholder="اكتب كلمة السر هنا..." autocomplete="off" />
+<button onclick="checkPassword()">أرسل</button>
+
+<div id="message"></div>
+
+<!-- أصوات -->
+<audio id="gunshot" src="https://actions.google.com/sounds/v1/weapons/gunshot_single.ogg" preload="auto"></audio>
+<audio id="door" src="https://actions.google.com/sounds/v1/doors/door_open_creak.ogg" preload="auto"></audio>
+
+<script>
+  function checkPassword() {
+    const input = document.getElementById('inputText').value.trim().toLowerCase();
+    const messageDiv = document.getElementById('message');
+    if(input === 'probot team') {
+      messageDiv.textContent = `ENTA ZA3ALTNI W IZA ENTA TESMA3 DA SHAY W ENTA FAHEM YA3NI ENNAK FAKEET ELSHFRA W RAH AJE BEETKOM W AZBAHAK HAHAHAHAHAH`;
+      // تشغيل الأصوات مع تأخير بينهما
+      const gunshot = document.getElementById('gunshot');
+      const door = document.getElementById('door');
+      gunshot.play();
+      gunshot.onended = () => {
+        door.play();
+      };
+    } else {
+      messageDiv.textContent = "كلمة السر غير صحيحة، جرب مرة ثانية.";
+    }
+  }
+</script>
+
+</body>
+</html>
